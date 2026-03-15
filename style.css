@@ -112,11 +112,13 @@ img { display: block; max-width: 100%; }
 /* ─── APP SHELL ─────────────────────────────────── */
 #app {
   display: flex; flex-direction: column;
-  height: 100dvh;
-  min-height: -webkit-fill-available;
+  height: 100%;
   overflow: hidden;
 }
-html { height: -webkit-fill-available; }
+html, body {
+  height: 100%;
+  height: -webkit-fill-available;
+}
 
 /* ─── HEADER ─────────────────────────────────────── */
 #app-header {
@@ -207,10 +209,12 @@ html { height: -webkit-fill-available; }
   background: var(--cream);
   border-top: 1px solid var(--cream-d);
   box-shadow: 0 -2px 16px rgba(28,18,8,.07);
-  padding: 0 8px;
-  padding-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+  padding: 0 8px 12px;
+  padding-bottom: max(env(safe-area-inset-bottom, 12px), 12px);
   flex-shrink: 0;
   z-index: 100;
+  position: sticky;
+  bottom: 0;
 }
 .nav-btn {
   flex: 1; display: flex; flex-direction: column;
