@@ -811,3 +811,14 @@ select.form-input { appearance: none; cursor: pointer; }
   color: var(--night-l);
   margin-bottom: 10px;
 }
+
+/* ─── CHIP AIRFRYER ─────────────────────────────── */
+.chip.airfryer {
+  border-color: #FFB347;
+  color: #E07000;
+}
+.chip.airfryer.active {
+  background: linear-gradient(135deg, #FFB347, #FF8C00);
+  border-color: transparent;
+  color: white;
+}
