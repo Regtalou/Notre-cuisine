@@ -13,6 +13,7 @@ const CATEGORIES = {
   plat:    { label: 'Plat',     emoji: '🍽️' },
   dessert: { label: 'Dessert',  emoji: '🍰' },
   autre:   { label: 'Autre',    emoji: '🍴' },
+  airfryer: { label: 'Airfryer',  emoji: '🔥' },
 };
 const JOURS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
 const JOURS_KEYS = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
