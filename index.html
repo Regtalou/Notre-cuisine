@@ -130,11 +130,9 @@
 
         <!-- FORMULAIRE RECETTE -->
         <div id="recipe-form-panel" class="hidden">
-          <label for="photo-input" class="form-photo-wrap">
-            <div id="form-photo-preview">
-              <span class="form-photo-label">📷 Ajouter une photo</span>
-            </div>
-          </label>
+          <div class="form-photo-wrap" id="form-photo-preview" onclick="document.getElementById('photo-input').click()">
+            <span class="form-photo-label">📷 Ajouter une photo</span>
+          </div>
           <input type="file" id="photo-input" accept="image/*" class="hidden">
 
           <div class="form-group">
@@ -922,6 +920,7 @@ const Recipes = {
 const RecipeForm = {
   _photoFile: null,
   _photoPreviewUrl: null,
+  _photoBase64: null,
 
   init() {
     document.getElementById('btn-manual').addEventListener('click', () => this.show());
@@ -988,6 +987,7 @@ const RecipeForm = {
   _resetForm() {
     this._photoFile = null;
     this._photoPreviewUrl = null;
+    this._photoBase64 = null;
     ['f-title','f-time','f-ingredients','f-steps','f-author','f-edit-id','f-photo-url'].forEach(id => {
       document.getElementById(id).value = '';
     });
@@ -1001,7 +1001,11 @@ const RecipeForm = {
     this._photoFile = file;
     const url = URL.createObjectURL(file);
     const wrap = document.getElementById('form-photo-preview');
-    wrap.innerHTML = `<img src="${url}" alt="Aperçu" style="width:100%;height:100%;object-fit:cover;border-radius:12px">`;
+    wrap.innerHTML = `<img src="${url}" alt="Aperçu" style="width:100%;height:100%;object-fit:cover;border-radius:18px">`;
+    // Stocker en base64 pour fallback sans Firebase
+    const reader = new FileReader();
+    reader.onload = (e) => { this._photoBase64 = e.target.result; };
+    reader.readAsDataURL(file);
   },
 
   _handleScanPreview(file) {
@@ -1069,7 +1073,9 @@ const RecipeForm = {
       let photoUrl = existUrl;
       if (this._photoFile) {
         const path = `recipes/${Date.now()}_${this._photoFile.name}`;
-        photoUrl = await DB.uploadImage(this._photoFile, path) || null;
+        const uploaded = await DB.uploadImage(this._photoFile, path);
+        // Si Firebase Storage non dispo, utiliser base64 local
+        photoUrl = uploaded || this._photoBase64 || null;
       }
 
       const data = {
