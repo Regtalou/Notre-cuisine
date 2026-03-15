@@ -1,0 +1,39 @@
+{
+  "name": "Notre Cuisine",
+  "short_name": "Cuisine",
+  "description": "Application familiale de gestion de cuisine — recettes, planning, courses",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1C1208",
+  "theme_color": "#C96A3A",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["food", "lifestyle", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Ajouter une recette",
+      "url": "/?view=add",
+      "description": "Créer une nouvelle recette"
+    },
+    {
+      "name": "Planning de la semaine",
+      "url": "/?view=planning",
+      "description": "Voir le planning des repas"
+    }
+  ]
+}
