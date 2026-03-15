@@ -67,7 +67,6 @@
           <button class="chip" data-filter="entree">Entrées</button>
           <button class="chip" data-filter="plat">Plats</button>
           <button class="chip" data-filter="dessert">Desserts</button>
-         
           <button class="chip airfryer" data-filter="airfryer">🔥 Airfryer</button>
         </div>
         <div id="recipes-grid" class="recipes-grid">
@@ -131,9 +130,11 @@
 
         <!-- FORMULAIRE RECETTE -->
         <div id="recipe-form-panel" class="hidden">
-          <div class="form-photo-wrap" id="form-photo-preview">
-            <span class="form-photo-label">📷 Ajouter une photo</span>
-          </div>
+          <label for="photo-input" class="form-photo-wrap">
+            <div id="form-photo-preview">
+              <span class="form-photo-label">📷 Ajouter une photo</span>
+            </div>
+          </label>
           <input type="file" id="photo-input" accept="image/*" class="hidden">
 
           <div class="form-group">
@@ -336,6 +337,7 @@ const CATEGORIES = {
   plat:    { label: 'Plat',     emoji: '🍽️' },
   dessert: { label: 'Dessert',  emoji: '🍰' },
   autre:   { label: 'Autre',    emoji: '🍴' },
+  airfryer: { label: 'Airfryer',  emoji: '🔥' },
 };
 const JOURS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
 const JOURS_KEYS = ['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'];
@@ -1445,6 +1447,14 @@ const Shopping = {
 ════════════════════════════════════════════════════ */
 
 
+
+// ════════ EXPOSITION GLOBALE (nécessaire pour les onclick dans le HTML) ════════
+window.App      = App;
+window.Recipes  = Recipes;
+window.Shopping = Shopping;
+window.Planning = Planning;
+window.RecipeForm = RecipeForm;
+window.Toast    = Toast;
 
 // ════════ DÉMARRAGE ════════
 App.init().catch(console.error);
